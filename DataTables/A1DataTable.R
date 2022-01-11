@@ -187,8 +187,7 @@ dt3 <- head(dt2[order(dt2$rating, decreasing=TRUE),],10)
 dt3 <- dt3 %>% 
   filter(dt3$is_paid==TRUE,
          dt3$rating >1000) %>% 
-  order(dt3$num_subscribers, decreasing=TRUE) 
-
+  arrange(dt3$num_subscribers, decreasing=TRUE) 
 View(dt3)
 
 
