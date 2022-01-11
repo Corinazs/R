@@ -44,6 +44,8 @@ library("dplyr")
 
 # Ermittle nun alle Kurse, die nach dem 1. Juni 2020 publiziert wurden. Wie viele Kurse wurden veröffentlicht?
 
+
+
 dt2 <- as.data.table(dt2)
 dt2[, created := as.Date(dt2$created, "%d.%m.%Y %H:%M:S")]
 
@@ -146,6 +148,8 @@ dt2 %>%
   dplyr::select("Expenditure of time") %>% 
   dplyr::filter(title %like% "Tableau")
 
+#dt[dt2$title %ike% "Tableau",]
+
 
 # Aufgabe 6: DataTables: Gruppierungen
 
@@ -157,7 +161,7 @@ dt2 %>%
 # Arithmetisches Mittel: num_published_lectures
 
 dt2 %>%
-  group_by(is_paid==FALSE) %>% 
+  group_by(is_paid) %>% 
   summary(mean(num_reviews),
           median(dt2$num_subcribers),
           median(arg_rating),
@@ -179,7 +183,12 @@ dt2 %>%
 # kostenpflichtig eingeschrieben haben, die mehr als 1.000 Bewertungen haben
 
 
-dt3 <- dt2[order(dt2$rating, decreasing=TRUE),]
+dt3 <- head(dt2[order(dt2$rating, decreasing=TRUE),],10)
+dt3 <- dt3 %>% 
+  filter(dt3$is_paid==TRUE,
+         dt3$rating >1000) %>% 
+  order(dt3$num_subscribers, decreasing=TRUE) 
+
 View(dt3)
 
 
