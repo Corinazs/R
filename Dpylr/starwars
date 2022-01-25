@@ -1,0 +1,110 @@
+# [Aufgabe] dplyr Datenmanipulation
+# Gegeben ist der eingebaute Starwars-Datensatz. 
+
+# Verwende eine geeignete Funktion, um die ersten 5 Einträge vom Starwars-Datensatz auszugeben
+# Hinweis: Der Datensatz ist bereits in R eingebaut. Daher kannst du die Daten direkt aufrufen über starwars
+install.packages("dplyr")
+library(dplyr)
+
+head(starwars, n=5L)
+
+# Verwende eine geeignete Funktion, um die Anzahl der Spalten und Zeilen zu ermitteln
+nrow(starwars)
+ncol(starwars)
+
+# Verwende die filter()-Funktion, um skin_color == "dark" und eye_color == "blue"zu filtern. 
+#Verwende dabei sowohl den Pipe-Operator, als auch die Schreibweise mit eckigen Klammern. Welcher Starwars-Character erhalten wir als Ergebnis?
+
+df <- starwars
+
+df %>% 
+  filter(skin_color=="dark" &eye_color=="blue") 
+
+df[df$skin_color=="dark"& df$eye_color=="blue",]
+
+# Verwende die Arrange()-Funktion, um die Daten nach height und mass zu filtern
+
+df %>% 
+  arrange(height,mass)
+  
+# Verwende anschließend eine geeignete Funktion, um das vorherige Ergebnis in absteigender Reihenfolge anzuordnen
+
+df %>% 
+  arrange(desc(height, mass))
+
+# Verwende die slice()-Funktion, um die Zeileneinträge zwischen 20 und 40 auszugeben
+
+df %>% 
+  slice(20:40)
+
+# Jetzt möchtest du eine geeignete slice()-Funktion verwenden, um die ersten 3 Einträge vom Kopf anzugeben deiner Daten
+
+df %>% 
+  head(slice(1:3), n=3L)
+
+# Das gleiche möchtest du nun auch mit den letzten 3 Einträge vom Ende deiner Daten durchführen
+
+df %>% 
+  slice_tail(n=3)
+
+# Verwende nun eine geeignete Funktion, um randomisiert Daten zu generieren. 
+#Von den zufällig generierten Daten möchtest du anschließend 10 Datensätze ausgeben
+  
+  df %>% 
+    sample_n((10))
+  
+  df %>% 
+    slice_sample(n=10)
+
+# Berechne das Maximum von der Spalte height für jene Daten, welche nicht NA sind und setze den n-Parameter auf 5
+  
+  df2 <- df %>% 
+    filter(!is.na(height)) %>% 
+    slice_max(height, n=5)
+  
+#Verwende die select-Funktion in Verbindung mit einer geeigneten Funktion innerhalb,
+#so dass du alle Spalten ausgibst, welche mit "color" enden
+
+  df %>% 
+    select(ends_with("color"))
+  
+# Verwende eine geeignete Funktion, um die Spalte name auf Name umzubenennen
+ 
+ df <- df %>% 
+   rename(Name= name)
+   
+   
+# Verwende die mutate()-Funktion, um die Spalte height_m zu berechnen. Dabei möchtest du height durch 100 dividieren
+   
+   df <- df %>% 
+     mutate(height_m=height/100)
+
+# Verwende die transmute()-Funktion, um die gleiche Berechnung für height_m vorzunehmen, um nur diese Spalte auszugeben. 
+#  Speichere das Ergebnis in einer neuen Variable
+
+  df3 <-  df %>% 
+     transmute(height_m=height/100)
+  print(df3)
+   
+# Die Anordnung deiner Spalten gefällt dir noch nicht. Du möchtest mit einer geeigneten Funktion die Spalten sex:homeworld vor height anordnen
+  df <- df %>% 
+    relocate(name,sex:homeworld, height)
+  
+  df <- df %>% 
+    relocate(sex:homeworld, .before=height)
+  
+
+# Verwende die summarise()-Funktion, um den Mittelwert von height für alle Werte zu berechnen, die nicht NA-Werte sind
+
+  df %>% 
+    summarise(mean(height, na.rm=T))
+
+# Abschließend möchtest du deine Daten gruppieren nach species und sex nach height und mass. 
+#Dabei möchtest du für die gruppierten Daten den Mittelwert jeweils für die numerischen Größen height und mass berechnen
+  
+    summarise(
+      select(
+        group_by(df,species, sex), height, mass),
+      height =(mean(height, na.rm=T)),
+      mass = mean(mass, na.rm=T))
+
