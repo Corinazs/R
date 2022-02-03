@@ -1,0 +1,87 @@
+# [Aufgabe]: tidyr Datentransformierung
+
+#   Aufgaben
+# Importiere die Bibliotheken tidyr und dplyr
+library(tidyr)
+library(dplyr)
+
+# Gegeben ist das DataFrame df1. Verwende die Gather-Funktion, um die Spalten Kennzahlen und in Mrd. neu anzulegen. 
+# Dabei sollen die Ergebnisse pivotiert werden.
+
+df1 <- data.frame(
+  Unternehmen = c("Ansys", "ServiceNow", "IDEXX", "Adobe", "PayPal"), 
+  Umsatz.2015 = c(0.9, 1, 1.6, 4.8, 9), 
+  Umsatz.2021 = c(1.7, 5, 2.7, 13, 22)
+)
+
+df1 %>% 
+  gather(Kennzahlen, `in Mrd`, Umsatz.2015:Umsatz.2021)
+
+
+# Verwende anschließend die pivot_longer-Funktion, um das gleiche Ergebnis wie in der vorherigen Aufgabe zu erzielen. 
+#Speichere das Ergebnis im DataFrame df2
+
+df2 <- pivot_longer(df1, c(Umsatz.2015, Umsatz.2021))
+colnames(df2) <- c("Unternehmen", "Umsatz.2015", "Umsatz.2021")
+
+# Jetzt möchtest du die Struktur wieder zurücksetzen auf die initiale Tabellenstruktur. 
+#Dazu verwendest du die pivot_wider-Funktion. Speichere das Ergebnis im DataFrame df3
+
+df3 <- pivot_wider(df1, c(Umsatz.2015, Umsatz.2021))
+
+# Gegeben ist das DataFrame df4. 
+#Verwende eine geeignete Funktion, um die einzelnen Elemente durch den Punkt zu trennen und teile 
+#die Elemente in getrennte Spalten auf. 
+#Speichere das Ergebnis im DataFrame df5
+
+df4 <- data.frame(x=c("BTC.610", 
+                      "ETH.212", 
+                      "BNB.42", 
+                      "ADA.40", 
+                      "XRP.28"))
+
+df5 <- separate(df4, x, c("Krypto", "Marktkapitalisierung"))
+
+# Hinweis: Für die neuen Spalten verwendest du die Bezeichnungen c("Kryptowährung", "Marktkapitalisierung"))
+
+# Verwende anschließend eine geeigente Funktion, um das Ergebnis aus df5 wieder zu bearbeiten. 
+#Dabei möchtest du die aufgetrennten Werte wieder zusammenführen. Verwende dabei - als Trennsymbol
+
+unite_(df5,"Kürzel",c("Krypto","Marktkapitalisierung"), sep='-')
+
+# Lade den in R eingebauten Datensatz airquality. Diesen kannst du aufrufen über airquality im Code. 
+#Berechne das arithmetische Mittel für die Spalte Temp und verwende den na.rm-Parameter um mögliche NA-Werte nicht zu berücksichtigen
+
+head(airquality)
+
+mean(airquality$Temp, na.rm=T)
+
+airquality %>% 
+  summary(mean(Temp, na.rm=T))
+    
+# Verwende die select-Funktion vom dplyr-Modul, um ausschließlich nach Ozone, Wind, Temp zu selektieren. 
+#Dann möchtest du über die complete.cases-Funktion alle NA-Werte anzeigen
+
+airquality %>% 
+  select(Ozone, Wind, Temp) %>% 
+  filter(!complete.cases(.))
+
+
+# Verwende erneut die select-Funktion vom dplyr-Modul, um ausschließlich nach Ozone, Wind, Temp zu selektieren. 
+#Dabei möchtest du die drop_na-Funktion verwenden, um alle NA-Werte in der Spalte Ozone zu entfernen
+
+airquality %>% 
+  select(Ozone, Wind, Temp) %>% 
+  drop_na(Ozone)
+
+
+# Verwende erneut die select-Funktion vom dplyr-Modul, um ausschließlich nach Solar.R, Wind, Temp zu selektieren. 
+#Dabei möchtest du die replace_na-Funktion verwenden, um alle NA-Werte in der Spalte Solar.R durch das arithmetische Mittel zu ersetzen
+
+head(airquality)
+
+airquality %>% 
+  select(Solar.R, Wind, Temp) %>% 
+  mutate(Solar.R = replace_na(Solar.R, mean(Solar.R, na.rm=T)))
+
+mean(airquality$Solar.R, na.rm=T)
