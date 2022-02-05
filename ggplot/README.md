@@ -10,4 +10,4 @@ Graphs of Basic_plots:
 ![grafik](https://user-images.githubusercontent.com/83080037/152651224-51b86ac7-5a2b-4ee5-9929-2740ac9be689.png)
 
 4.
-![grafik](https://user-images.githubusercontent.com/83080037/152651129-d24be388-50b8-4fae-b743-c76015424e51.png)
+![grafik](https://user-images.githubusercontent.com/83080037/152651257-67bbbf0d-4f71-4430-a960-8c7f91f4f747.png)
