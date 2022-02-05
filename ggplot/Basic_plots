@@ -30,7 +30,3 @@ print(pl3)
 pl4 <-  pl3 + geom_smooth(method = 'gam')
 print(pl4)
 
-
-  
-  
-  
