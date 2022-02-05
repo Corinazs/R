@@ -1,0 +1,36 @@
+install.packages("ggplot2")
+library(ggplot2)
+library(ggthemes)
+head(mpg)
+
+#Histogramm der hwy mpg Werte bauen
+pl <- ggplot(mpg, aes(x=hwy)) + geom_histogram(colour = 'red', fill= 'red', binwidth = 1, alpha = 0.4)
+print(pl)
+
+#Balkendiagramm der Autos pro Hersteller mit Farbfüllung 
+#nach der Anzahl der Zylinder (cyl):
+
+pl2 <- ggplot(mpg, aes(x=manufacturer)) + geom_bar(aes(fill=factor(cyl))) 
+print(pl2)
+
+
+#Erstelle ein Scatterplot von "volume" vs. "sales" des Datensatzes "txhousing". 
+#Erhöhe anschließend die Lesbarkeit indem du mit Transparenz (alpha) und Frage (color) arbeitest.
+
+df <- txhousing
+head(txhousing)
+
+pl3 <- ggplot(df, aes(x=sales, y=volume)) + geom_jitter(alpha=0.8, color='purple')
+print(pl3)
+
+#Füge eine "smooth fit" Linie zum Scatterplot von eben hinzu. 
+#Hinweis: geom_smooth() kann dir weiterhelfen.**
+
+
+pl4 <-  pl3 + geom_smooth(method = 'gam')
+print(pl4)
+
+
+  
+  
+  
