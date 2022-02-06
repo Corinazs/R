@@ -4,16 +4,16 @@ Plots:
 ![grafik](https://user-images.githubusercontent.com/83080037/152678949-c035c155-021b-41a6-b6ab-0565f150ea53.png)
 
 2.
-![grafik](https://user-images.githubusercontent.com/83080037/152678125-4efbc03d-14a5-42d6-b821-19908142e20e.png)
+![grafik](https://user-images.githubusercontent.com/83080037/152678997-79f4169c-3d86-4be4-861e-3ad6a8ad5914.png)
 
 3.
-![grafik](https://user-images.githubusercontent.com/83080037/152678129-2ac0ae5c-5e97-4054-8c71-6418f51bc2f6.png)
+![grafik](https://user-images.githubusercontent.com/83080037/152679006-a1961362-89f1-42df-bc1d-b56be88e8125.png)
 
 4.
-![grafik](https://user-images.githubusercontent.com/83080037/152678134-687af1a3-08a3-42c3-b4f8-a44d0078fe39.png)
+![grafik](https://user-images.githubusercontent.com/83080037/152679018-8a09f16a-a58c-447b-a10c-4d6481fc254f.png)
 
 5.
-!![grafik](https://user-images.githubusercontent.com/83080037/152678834-b9a601a7-491a-4837-8df3-870d13967a4d.png)
+![grafik](https://user-images.githubusercontent.com/83080037/152678834-b9a601a7-491a-4837-8df3-870d13967a4d.png)
 
 6.
 ![grafik](https://user-images.githubusercontent.com/83080037/152678145-cf7df844-9b82-48aa-88a5-1dd9c3c47f5b.png)
