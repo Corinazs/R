@@ -1,0 +1,90 @@
+
+# [Aufgabe]: Visualisierungsprojekt ---------------------------------------
+
+# Abschnitt 1: Setup ------------------------------------------------------
+# Aufgabe 1: Datengrundlage
+
+# Gegeben ist die CSV-Datei "StudentsPerformance.csv". 
+# Lese die Daten ein und speichere die Daten in der DataTable dt.
+# Analysiere die Struktur deiner Daten. Welche Datentypen liegen vor und wie sind die Daten verteilt?
+# Lade die Bibliotheken ggplot2 und ggthemes
+
+library(data.table)
+df <- read.csv("StudentsPerformance.csv")
+dt <- as.data.table(df)
+
+head(dt)
+str(dt)
+
+library(ggplot2)
+library(ggthemes)
+
+# Abschnitt 2: Histogramme ------------------------------------------------
+# Aufgabe 2: Verteilung über Histogramme analysieren
+
+# Erstelle zuerst ein einfaches Histogramm für den math score
+# Dann möchtest du den writing score analysieren nach parental level of education
+# Abschließend soll der reading score nach race/ethnicity analysiert werden
+# Hinweis: Versuche zusätzlich das Histogramm optisch zu tunen über die theme-Parameter
+
+pl1 <- ggplot(dt, aes(x=math.score)) + geom_histogram()
+print(pl1)
+
+pl2 <- ggplot(dt, aes(x=writing.score,y=parental.level.of.education))  + geom_col()
+print(pl2)
+
+pl3 <- ggplot(dt, aes(reading.score, color = race.ethnicity)) + geom_bar(position = "stack", aes(fill=race.ethnicity)) + xlab("Reading score") + ylab("Amount")+theme_bw()
+print(pl3)
+
+# Abschnitt 3: Scatterplots -----------------------------------------------
+# Aufgabe 3: Streudiagramme grafisch plotten
+
+# Führe die nachfolgenden Visualisierungsplots durch:
+  
+#   Erstelle ein Streudiagramm für den math score und reading score. 
+# Zeichne zusätzlich eine rote Regressionsgerade durch die Punktewolke ein
+
+pl4 <- ggplot(dt, aes(x=math.score, y=reading.score)) + geom_jitter(color='pink') + geom_smooth(method=lm,color='red')+ xlab("Math score") + ylab("Reading score") + theme_clean()
+print(pl4)
+
+# Erstelle jetzt auch ein Streudiagramm für den writing score und reading score. 
+# Dabei möchtest du die Farbe in Abhängigkeit von race/ethnicity grafisch plotten 
+# und die Größe abhängig setzen von den Levels von parental level of education. 
+# Zusätzlich setzt du den alpha-Parameter für die Transparenz auf 0.8 und 
+# verwendest über den shape-Parameter andere Formen für die Beobachtungspunkte
+
+pl5 <- ggplot(dt, aes(x=writing.score, y=reading.score, color= race.ethnicity)) +geom_jitter(alpha=0.8) + geom_point(aes(shape = race.ethnicity, size=parental.level.of.education))
+print(pl5)
+
+
+# Abschnitt 4: Distribution Plots -----------------------------------------
+# Aufgabe 4: Bin2D- und Density2D-Diagramme plotten
+
+# Führe die nachfolgenden Visualisierungsplots durch:
+ 
+# Erstelle ein geom_bin2d-Plot für den math score und reading score
+
+# Visualisiere die Variablen reading score und writing score in einem geom_density2d-Diagramm
+
+pl6 <- ggplot(dt, aes(x=math.score, y=reading.score)) + geom_bin2d()
+print(pl6)
+
+# Abschnitt 5: Kategorische Plots -----------------------------------------
+# Aufgabe 5: Balkendiagramme und Boxplots visualisieren
+
+# Führe die nachfolgenden Visualisierungsplots durch:
+  
+# Barplots
+# Erstelle nun ein gestapeltes Säulendiagramm für x=parental level of education 
+# und verwende gender als Legende
+
+pl7 <- ggplot(dt, aes(x=parental.level.of.education)) + geom_bar(position = "stack", aes(fill=gender))
+print(pl7)
+
+# Boxplots
+# Abschließend möchtest du ein Boxplot grafisch visualisieren für 
+# x=parental level of education und y=math score. 
+# Verwende zusätzlich auch coord_flip() und füge Achsenbezeichnungen hinzu
+
+pl8 <- ggplot(dt, aes(x=parental.level.of.education, y=math.score)) + geom_boxplot() + xlab("Parental level od education") +ylab("Math score") +coord_flip() +theme_economist()
+print(pl8)
