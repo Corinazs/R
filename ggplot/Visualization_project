@@ -27,7 +27,7 @@ library(ggthemes)
 # Abschließend soll der reading score nach race/ethnicity analysiert werden
 # Hinweis: Versuche zusätzlich das Histogramm optisch zu tunen über die theme-Parameter
 
-pl1 <- ggplot(dt, aes(x=math.score)) + geom_histogram()
+pl1 <- ggplot(dt, aes(x=math.score)) + geom_histogram(color= 'blue') + theme_calc()
 print(pl1)
 
 pl2 <- ggplot(dt, aes(x=writing.score,y=parental.level.of.education))  + geom_col()
