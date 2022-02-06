@@ -13,7 +13,7 @@ Plots:
 ![grafik](https://user-images.githubusercontent.com/83080037/152678134-687af1a3-08a3-42c3-b4f8-a44d0078fe39.png)
 
 5.
-![grafik](https://user-images.githubusercontent.com/83080037/152678141-e7059a0d-ded4-451f-8d76-39beca0b8e67.png)
+!![grafik](https://user-images.githubusercontent.com/83080037/152678834-b9a601a7-491a-4837-8df3-870d13967a4d.png)
 
 6.
 ![grafik](https://user-images.githubusercontent.com/83080037/152678145-cf7df844-9b82-48aa-88a5-1dd9c3c47f5b.png)
