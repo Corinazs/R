@@ -33,7 +33,10 @@ print(pl1)
 pl2 <- ggplot(dt, aes(x=writing.score,y=parental.level.of.education))  + geom_col()
 print(pl2)
 
-pl3 <- ggplot(dt, aes(reading.score, color = race.ethnicity)) + geom_bar(position = "stack", aes(fill=race.ethnicity)) + xlab("Reading score") + ylab("Amount")+theme_bw()
+pl3 <- ggplot(dt, aes(reading.score, color = race.ethnicity)) + 
+        geom_bar(position = "stack", aes(fill=race.ethnicity)) + 
+        xlab("Reading score") + 
+        ylab("Amount")+theme_bw()
 print(pl3)
 
 # Abschnitt 3: Scatterplots -----------------------------------------------
@@ -44,7 +47,12 @@ print(pl3)
 #   Erstelle ein Streudiagramm für den math score und reading score. 
 # Zeichne zusätzlich eine rote Regressionsgerade durch die Punktewolke ein
 
-pl4 <- ggplot(dt, aes(x=math.score, y=reading.score)) + geom_jitter(color='pink') + geom_smooth(method=lm,color='red')+ xlab("Math score") + ylab("Reading score") + theme_clean()
+pl4 <- ggplot(dt, aes(x=math.score, y=reading.score)) + 
+        geom_jitter(color='pink') + 
+        geom_smooth(method=lm,color='red')+ 
+        xlab("Math score") + 
+        ylab("Reading score") + 
+        theme_clean()
 print(pl4)
 
 # Erstelle jetzt auch ein Streudiagramm für den writing score und reading score. 
@@ -53,7 +61,8 @@ print(pl4)
 # Zusätzlich setzt du den alpha-Parameter für die Transparenz auf 0.8 und 
 # verwendest über den shape-Parameter andere Formen für die Beobachtungspunkte
 
-pl5 <- ggplot(dt, aes(x=writing.score, y=reading.score, color= race.ethnicity)) +geom_jitter(alpha=0.8) + geom_point(aes(shape = race.ethnicity, size=parental.level.of.education))
+pl5 <- ggplot(dt, aes(x=writing.score, y=reading.score, color= race.ethnicity)) +
+        geom_point(aes(color = race.ethnicity, size=parental.level.of.education),alpha=0.8, shape=3)
 print(pl5)
 
 
@@ -78,7 +87,8 @@ print(pl6)
 # Erstelle nun ein gestapeltes Säulendiagramm für x=parental level of education 
 # und verwende gender als Legende
 
-pl7 <- ggplot(dt, aes(x=parental.level.of.education)) + geom_bar(position = "stack", aes(fill=gender))
+pl7 <- ggplot(dt, aes(x=parental.level.of.education)) + 
+       geom_bar(position = "stack", aes(fill=gender))
 print(pl7)
 
 # Boxplots
@@ -86,5 +96,9 @@ print(pl7)
 # x=parental level of education und y=math score. 
 # Verwende zusätzlich auch coord_flip() und füge Achsenbezeichnungen hinzu
 
-pl8 <- ggplot(dt, aes(x=parental.level.of.education, y=math.score)) + geom_boxplot() + xlab("Parental level od education") +ylab("Math score") +coord_flip() +theme_economist()
+pl8 <- ggplot(dt, aes(x=parental.level.of.education, y=math.score)) + 
+       geom_boxplot() + xlab("Parental level od education") +
+       ylab("Math score") +
+       coord_flip() +
+       theme_economist()
 print(pl8)
