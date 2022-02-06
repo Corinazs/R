@@ -1,7 +1,7 @@
 Plots:
 
 1.
-![grafik](https://user-images.githubusercontent.com/83080037/152678116-1d5b1d49-e7f1-4a77-bb62-657405bb688a.png)
+![grafik](https://user-images.githubusercontent.com/83080037/152678949-c035c155-021b-41a6-b6ab-0565f150ea53.png)
 
 2.
 ![grafik](https://user-images.githubusercontent.com/83080037/152678125-4efbc03d-14a5-42d6-b821-19908142e20e.png)
