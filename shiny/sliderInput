@@ -1,0 +1,21 @@
+#Create a date slider
+
+install.packages("shiny")
+library(shiny)
+
+ui <- fluidPage(
+  sliderInput("delivery", "When should we deliver?", 
+              min=as.Date("2020-09-16","%Y-%m-%d"),
+              max = as.Date("2020-09-23","%Y-%m-%d"),
+              value= as.Date("2020-09-17","%Y-%m-%d"),
+              ),
+  textOutput("time"),
+)
+
+server <- function(input, output, session) {
+  output$time <- renderPrint({
+    input$delivery
+  })
+}
+
+shinyApp(ui, server)
