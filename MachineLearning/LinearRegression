@@ -1,0 +1,59 @@
+library(tidyr)
+library(dplyr)
+library(openxlsx)
+library(caret)
+library(ggplot2)
+
+df <- read.csv("/RStudio/Digital Transformation/corina_zilchschuler/Coding_Training/StudentsPerformance.csv")
+
+plotRS <- ggplot(df, aes(x=reading.score, y=math.score))+ geom_point(color="black") +geom_smooth() +
+  xlab("Reading score") +
+  ylab("Math score") +
+  ggtitle("")
+plotWS <- ggplot(df, aes(x=writing.score, y=math.score))+ geom_point(color="green") + geom_smooth()
+
+##Korrelationsmatrix
+cormatrix <- cor(df[, sapply(df, is.numeric)])
+
+
+modelLM <- lm(math.score ~ writing.score + reading.score, data=df)
+summary(modelLM)
+
+plotModel <- ggplot(model, aes(y=math.score, x=writing.score, shape=reading.score)) + geom_point()
+
+
+
+##Build model train() macht hier dasselbe wie lm()
+model <- train(math.score ~ writing.score + reading.score,
+               data = df,
+               method="lm",
+               trControl = trainControl(method="none"))
+print(model$finalModel)
+
+
+##Generate data
+random <- df %>% 
+  sample_n(5)
+
+randomWS <- random %>% 
+  select(writing.score)
+
+randomRS <- random %>% 
+  select(reading.score)
+
+
+predict(object = modelLM,
+        newdata= c(randomRS, randomWS))
+
+##own function
+predictfct <- function(x,y) {
+  return (7.5241 + 0.2494 * x + 0.6013 * y)
+}
+predictfct(randomRS, randomWS)
+
+
+plotPrediction <- ggplot(data = df, mapping = aes(y=math.score, x=writing.score)) + geom_point()+
+  geom_smooth(method="lm", color="red", se=F)
+
+
+
