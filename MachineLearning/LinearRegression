@@ -46,12 +46,24 @@ randomRS <- random %>%
 
 predict(object = modelLM,
         newdata= c(randomRS, randomWS))
+        
+##result
+# 1        2        3        4        5 
+#55.86779 49.31150 51.65876 74.52559 74.58349 
 
 ##own function
 predictfct <- function(x,y) {
   return (7.5241 + 0.2494 * x + 0.6013 * y)
 }
 predictfct(randomRS, randomWS)
+
+##result
+#reading.score
+#1       54.4595
+#2       48.2552
+#3       52.7137
+#4       76.6358
+#5       73.1749
 
 
 plotPrediction <- ggplot(data = df, mapping = aes(y=math.score, x=writing.score)) + geom_point()+
