@@ -4,7 +4,7 @@ library(openxlsx)
 library(caret)
 library(ggplot2)
 
-df <- read.csv("/RStudio/Digital Transformation/corina_zilchschuler/Coding_Training/data/bikeshare-datei-fuer-projektaufgabe-in-r.csv")
+df <- read.csv("Coding_Training/data/bikeshare-datei-fuer-projektaufgabe-in-r.csv")
 
 plot <- ggplot(df, aes(temp, count)) + 
   geom_point(alpha=0.2, aes(color=temp))
